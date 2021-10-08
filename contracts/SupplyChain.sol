@@ -71,6 +71,7 @@ contract SupplyChain {
     uint _price = items[_sku].price;
     uint amountToRefund = msg.value - _price;
     items[_sku].buyer.transfer(amountToRefund);
+
   }
 
   // For each of the following modifiers, use what you learned about modifiers
@@ -82,23 +83,23 @@ contract SupplyChain {
   // an Item has been added?
 
   modifier forSale(uint _sku) {
-  require((items[_sku].seller != addres(0)) && (items[_sku].state == State.ForSale), "This item is not for sale")
+  require((items[_sku].seller != address(0)) && (items[_sku].state == State.ForSale), "This item is not for sale");
   _;
   }
   // modifier sold
    modifier sold(uint _sku) {
-  require(items[_sku].state == State.Sold, "This item has not been sold")
+  require(items[_sku].state == State.Sold, "This item has not been sold");
   _;
   }
   // modifier shipped(uint _sku) 
 modifier shipped(uint _sku) {
-  require(items[_sku].state == State.Shipped, "This item has not been Shipped")
+  require(items[_sku].state == State.Shipped, "This item has not been Shipped");
   _;
   }
 
   // modifier received(uint _sku) 
 modifier received(uint _sku) {
-  require(items[_sku].state == State.Received, "This item has not been Received")
+  require(items[_sku].state == State.Received, "This item has not been Received");
   _;
   }
 
@@ -174,7 +175,7 @@ modifier received(uint _sku) {
   }
 
   // Uncomment the following code block. it is needed to run tests
-  function fetchItem(uint _sku) public view returns (string memory name, uint sku, uint price, uint state, address seller, address buyer) */ 
+  function fetchItem(uint _sku) public view returns (string memory name, uint sku, uint price, uint state, address seller, address buyer) 
    { 
     name = items[_sku].name;
     sku = items[_sku].sku;
@@ -185,4 +186,3 @@ modifier received(uint _sku) {
     return (name, sku, price, state, seller, buyer); 
    } 
 }
-
